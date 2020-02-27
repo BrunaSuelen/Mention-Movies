@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MentionComponent } from './component/mention/mention.component';
 import { MentionModule } from 'angular-mentions';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { MentionModule } from 'angular-mentions';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MentionModule
+    MentionModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
