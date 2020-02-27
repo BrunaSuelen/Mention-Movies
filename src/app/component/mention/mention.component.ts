@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
+import { ConfigService } from 'src/app/service/config.service';
 
 @Component({
   selector: 'app-mention',
@@ -9,18 +10,12 @@ import { Title } from '@angular/platform-browser';
 })
 export class MentionComponent implements OnInit {
 
-  configUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=05db07e27024bc56a1e3aa80f74fc6bd';
-  items: string[] = ['Noah', 'Liam', 'Mason', 'Jacob'];
   movies: any[];
 
-  constructor(private http: HttpClient) { }
-
-  getConfig() {
-    return this.http.get<any>(this.configUrl);
-  }
+  constructor(public configService: ConfigService) { }
 
   ngOnInit(): void {
-    this.getConfig().subscribe(res => {
+    this.configService.getConfig().subscribe(res => {
       this.movies = res.results.map( movie =>{
         return {title: movie.title, overview: movie.overview};
       });
